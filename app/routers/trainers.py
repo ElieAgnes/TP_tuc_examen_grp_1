@@ -1,3 +1,7 @@
+"""
+Trainers router module defining API endpoints for managing trainers, their pokemons, and items
+"""
+
 from typing import List
 from sqlalchemy.orm import Session
 from fastapi import APIRouter,  Depends, HTTPException

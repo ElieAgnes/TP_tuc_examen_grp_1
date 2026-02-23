@@ -1,13 +1,17 @@
+"""
+Utils module defining utility functions for database access and age calculation
+"""
+
 from datetime import date
 from app import models
-from app.sqlite import SessionLocal, engine
+from app.sqlite import SESSION_LOCAL, engine
 models.Base.metadata.create_all(bind=engine)
 
 def get_db():
     """
         Get the DB
     """
-    database = SessionLocal()
+    database = SESSION_LOCAL()
     try:
         yield database
     finally:

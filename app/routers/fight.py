@@ -1,4 +1,7 @@
-from typing import List
+"""
+Fight router module defining the API endpoint for fighting between trainers
+"""
+
 from sqlalchemy.orm import Session
 from fastapi import APIRouter,  Depends, HTTPException
 from app.utils.utils import get_db
@@ -14,8 +17,7 @@ def fight_trainers(trainer_id: int, trainer2_id: int, database: Session = Depend
     """
     db_trainer = actions.get_trainer(database, trainer_id=trainer_id)
     db_trainer2 = actions.get_trainer(database, trainer_id=trainer2_id)
-    
+
     if db_trainer is None or db_trainer2 is None:
         raise HTTPException(status_code=404, detail="One of trainer is not found")
-    return actions.fight_pokemon(database=database, trainer=db_trainer, trainer2=db_trainer2)
-
+    return actions.fight_pokemon(trainer=db_trainer, trainer2=db_trainer2)

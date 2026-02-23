@@ -1,9 +1,13 @@
+"""
+Pokemons router module defining the API endpoint for pokemons
+"""
+
+import random
 from typing import List
 from sqlalchemy.orm import Session
 from fastapi import APIRouter,  Depends
 from app import actions, schemas
 from app.utils.utils import get_db
-import random
 
 router = APIRouter()
 
@@ -19,7 +23,7 @@ def get_pokemons(skip: int = 0, limit: int = 100, database: Session = Depends(ge
 
 
 @router.get("/random")
-def get_random_pokemons(database: Session = Depends(get_db)):
+def get_random_pokemons():
     """
         Return 3 pokemons randomly
     """

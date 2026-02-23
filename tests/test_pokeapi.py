@@ -1,10 +1,18 @@
-import pytest
+"""
+    This module contains tests for the pokeapi utils functions
+"""
 from app.utils.pokeapi import get_pokemon_name, battle_compare_stats, battle_pokemon
 
 
 class TestPokeApi:
+    """
+    Test class for pokeapi utils functions
+    """
 
     def test_get_pokemon_name(self, mocker):
+        """
+        Test get_pokemon_name function
+        """
         mocker.patch(
             "app.utils.pokeapi.get_pokemon_data", return_value={"name": "bulbasaur"}
         )
@@ -12,6 +20,9 @@ class TestPokeApi:
         assert result == "bulbasaur"
 
     def test_battle_compare_stats(self):
+        """
+        Test battle_compare_stats function
+        """
         first_pokemon_stats = [
             {"base_stat": 45, "stat": {"name": "hp"}},
             {"base_stat": 49, "stat": {"name": "attack"}},

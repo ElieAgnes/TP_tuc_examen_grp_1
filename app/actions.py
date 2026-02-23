@@ -1,3 +1,6 @@
+"""
+Actions module for handling database operations related to trainers, pokemons, and items
+"""
 from sqlalchemy.orm import Session
 from . import models, schemas
 from .utils.pokeapi import battle_pokemon, get_pokemon_name, get_pokemon_stats_api
@@ -75,6 +78,9 @@ def get_pokemon(database: Session, pokemon_id: int):
 
 
 def get_pokemon_stats(api_id: int):
+    """
+       Get pokemon stats from pokeapi
+    """
     pokemon = get_pokemon_stats_api(api_id)
     return pokemon
 
@@ -85,11 +91,10 @@ def get_pokemons(database: Session, skip: int = 0, limit: int = 100):
     """
     return database.query(models.Pokemon).offset(skip).limit(limit).all()
 
-def fight_pokemon(database: Session, trainer: models.Trainer, trainer2: models.Trainer):
+def fight_pokemon(trainer: models.Trainer, trainer2: models.Trainer):
     """
         Make a fight between 2 trainers
     """
-   
     score_trainer1 = 0
     score_trainer2 = 0
 
@@ -103,7 +108,6 @@ def fight_pokemon(database: Session, trainer: models.Trainer, trainer2: models.T
 
     if score_trainer1 > score_trainer2:
         return {"winner": trainer, "is_tie": False}
-    elif score_trainer2 > score_trainer1:
+    if score_trainer2 > score_trainer1:
         return {"winner": trainer2, "is_tie": False}
-    else:
-        return {"winner": None, "is_tie": True} 
+    return {"winner": None, "is_tie": True}
