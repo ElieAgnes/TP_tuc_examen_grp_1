@@ -9,11 +9,12 @@ def get_pokemon_name(api_id):
     """
     return get_pokemon_data(api_id)['name']
 
-def get_pokemon_stats(api_id):
+def get_pokemon_stats_api(api_id):
     """
         Get pokemon stats from the API pokeapi
     """
-    return False
+    pokemon = get_pokemon_data(api_id)
+    return {pokemon['name']: pokemon['stats']}
 
 def get_pokemon_data(api_id):
     """
@@ -42,5 +43,4 @@ def battle_compare_stats(first_pokemon_stats, second_pokemon_stats):
             battle_result += 1
         elif first_pokemon_stats[i]['base_stat'] < second_pokemon_stats[i]['base_stat']:
             battle_result -= 1
-        print(f"Comparing {first_pokemon_stats[i]['stat']['name']} : {first_pokemon_stats[i]['base_stat']} vs {second_pokemon_stats[i]['base_stat']} => battle result : {battle_result}")
     return battle_result
