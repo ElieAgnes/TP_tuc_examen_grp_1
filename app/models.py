@@ -1,3 +1,9 @@
+"""
+SQLAlchemy models for the Pokemon Trainer API.
+
+Defines the database tables for trainers, pokemons, and items.
+"""
+
 from sqlalchemy import Column, ForeignKey, Integer, String, Date
 from sqlalchemy.orm import relationship
 from .sqlite import Base
@@ -35,7 +41,7 @@ class Pokemon(Base):
 
 class Item(Base):
     """
-        Class representing a pokemon trainer
+    Class representing an item.
     """
     __tablename__ = "items"
 

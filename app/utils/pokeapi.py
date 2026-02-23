@@ -1,3 +1,9 @@
+"""
+Utilities for interacting with the PokeAPI.
+
+Provides functions to fetch pokemon data and simulate battles.
+"""
+
 import requests
 
 base_url = "https://pokeapi.co/api/v2"
@@ -25,12 +31,12 @@ def get_pokemon_data(api_id):
 
 def battle_pokemon(first_api_id, second_api_id):
     """
-        Do battle between 2 pokemons
+    Do battle between 2 pokemons.
     """
-    premierPokemon = get_pokemon_data(first_api_id)
-    secondPokemon = get_pokemon_data(second_api_id)
-    battle_result = battle_compare_stats(premierPokemon['stats'], secondPokemon['stats'])
-    return premierPokemon if battle_result > 0 else secondPokemon if battle_result < 0 else {'winner': 'draw'}
+    first_pokemon = get_pokemon_data(first_api_id)
+    second_pokemon = get_pokemon_data(second_api_id)
+    battle_result = battle_compare_stats(first_pokemon['stats'], second_pokemon['stats'])
+    return first_pokemon if battle_result > 0 else second_pokemon if battle_result < 0 else {'winner': 'draw'}
 
 
 def battle_compare_stats(first_pokemon_stats, second_pokemon_stats):

@@ -1,6 +1,12 @@
+"""
+Utility functions for the Pokemon Trainer API.
+
+Includes database session management and age calculation.
+"""
+
 from datetime import date
-from app import models
-from app.sqlite import SessionLocal, engine
+from .. import models
+from ..sqlite import SessionLocal, engine
 models.Base.metadata.create_all(bind=engine)
 
 def get_db():

@@ -1,3 +1,9 @@
+"""
+Database actions for the Pokemon Trainer API.
+
+Contains functions to interact with the database for trainers, pokemons, items, and battles.
+"""
+
 from sqlalchemy.orm import Session
 from . import models, schemas
 from .utils.pokeapi import battle_pokemon, get_pokemon_name, get_pokemon_stats_api

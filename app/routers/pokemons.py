@@ -1,9 +1,17 @@
+"""
+Router for pokemon-related endpoints.
+
+Provides endpoints to retrieve pokemons and get random pokemon stats.
+"""
+
 from typing import List
+import random
 from sqlalchemy.orm import Session
 from fastapi import APIRouter,  Depends
-from app import actions, schemas
-from app.utils.utils import get_db
-import random
+from .. import actions, schemas
+from ..utils.utils import get_db
+
+
 
 router = APIRouter()
 

@@ -1,3 +1,9 @@
+"""
+Main module for the Pokemon Trainer API.
+
+This FastAPI application provides endpoints for managing trainers, pokemons, items, and battles.
+"""
+
 from fastapi import FastAPI
 from app.routers import fight, trainers, pokemons, items
 

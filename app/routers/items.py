@@ -1,8 +1,14 @@
+"""
+Router for item-related endpoints.
+
+Provides endpoints to retrieve items.
+"""
+
 from typing import List
 from sqlalchemy.orm import Session
 from fastapi import APIRouter,  Depends
-from app.utils.utils import get_db
-from app import actions, schemas
+from ..utils.utils import get_db
+from .. import actions, schemas
 
 
 router = APIRouter()

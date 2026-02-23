@@ -1,3 +1,9 @@
+"""
+Tests for PokeAPI utilities.
+
+Tests functions in app.utils.pokeapi module.
+"""
+
 import pytest
 from app.utils.pokeapi import get_pokemon_name, battle_compare_stats, battle_pokemon
 
