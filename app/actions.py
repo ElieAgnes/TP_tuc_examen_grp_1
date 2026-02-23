@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from . import models, schemas
-from .utils.pokeapi import get_pokemon_name
+from .utils.pokeapi import battle_pokemon, get_pokemon_name
 
 
 def get_trainer(database: Session, trainer_id: int):
@@ -80,3 +80,29 @@ def get_pokemons(database: Session, skip: int = 0, limit: int = 100):
         Default limit is 100
     """
     return database.query(models.Pokemon).offset(skip).limit(limit).all()
+
+def fight_pokemon(database: Session, trainer: models.Trainer, trainer2: models.Trainer):
+    """
+        Make a fight between 2 trainers
+    """
+   
+    score_trainer1 = 0
+    score_trainer2 = 0
+
+    len_loop = min(len(trainer.pokemons), len(trainer2.pokemons))
+
+    for i in range(len_loop):
+        print(f"Fight between {trainer.pokemons[i].api_id} and {trainer2.pokemons[i].api_id}")
+        result = battle_pokemon(trainer.pokemons[i].api_id, trainer2.pokemons[i].api_id)
+
+        score_trainer1 += 1 if result['id'] == trainer.pokemons[i].api_id else 0
+        score_trainer2 += 1 if result['id'] == trainer2.pokemons[i].api_id else 0
+
+        print(f"Score trainer 1: {score_trainer1}, Score trainer 2: {score_trainer2}")
+
+    if score_trainer1 > score_trainer2:
+        return {"winner": trainer, "is_tie": False}
+    elif score_trainer2 > score_trainer1:
+        return {"winner": trainer2, "is_tie": False}
+    else:
+        return {"winner": None, "is_tie": True} 

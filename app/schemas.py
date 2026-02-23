@@ -53,3 +53,13 @@ class Trainer(TrainerBase):
 
     class Config:
         orm_mode = True
+
+#
+#  BATTLE
+#
+class BattleResult(BaseModel):
+    winner: Optional[Trainer] = None
+    is_tie: bool
+
+    class Config:
+        orm_mode = True
